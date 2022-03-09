@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_today"
-        android:icon="@drawable/ic_calendar"
+        android:id="@+id/videoFragment"
+        android:icon="@drawable/calendar_selector"
         android:title="@string/today" />
     <item android:title="" />
+    <item
+        android:id="@+id/wordFragment"
+        android:icon="@drawable/book_selector"
+        android:title="@string/study" />
+    <item android:title="" />
+    <item android:id="@+id/temp_fragment"
+        android:icon="@drawable/user_selector"
+        android:title="@string/cab"/>
 </menu>
