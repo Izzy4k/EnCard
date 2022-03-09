@@ -44,7 +44,6 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
                     , pixaBayResponse ->
                             wordAdapter.setList(pixaBayResponse.getHits()));
         }
-
     }
 
     private void initBtn() {

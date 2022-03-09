@@ -1,5 +1,6 @@
 package com.example.encard.ui.fragment.word.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -8,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.encard.databinding.ItemWordBinding;
-import com.example.encard.model.Hit;
+import com.example.encard.model.Image.Hit;
 
 import java.util.ArrayList;
 import java.util.List;

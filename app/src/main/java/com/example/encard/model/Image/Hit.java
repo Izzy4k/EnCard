@@ -1,4 +1,4 @@
-package com.example.encard.model;
+package com.example.encard.model.Image;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

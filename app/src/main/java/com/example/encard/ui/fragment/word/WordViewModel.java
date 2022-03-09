@@ -4,8 +4,8 @@ package com.example.encard.ui.fragment.word;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.encard.model.PixaBayResponse;
-import com.example.encard.model.PixaBayStorage;
+import com.example.encard.model.Image.PixaBayResponse;
+import com.example.encard.model.Image.PixaBayStorage;
 
 public class WordViewModel extends ViewModel {
     private MutableLiveData<PixaBayResponse> responseMutableLiveData;

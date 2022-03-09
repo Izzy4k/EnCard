@@ -1,11 +1,11 @@
-package com.example.encard.model;
+package com.example.encard.model.video;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class PixaBayResponse {
+public class PixaBoyVideo {
     @SerializedName("total")
     @Expose
     private Integer total;
@@ -14,7 +14,7 @@ public class PixaBayResponse {
     private Integer totalHits;
     @SerializedName("hits")
     @Expose
-    private List<Hit> hits = null;
+    private List<HitVideo> hits = null;
 
     public Integer getTotal() {
         return total;
@@ -32,11 +32,11 @@ public class PixaBayResponse {
         this.totalHits = totalHits;
     }
 
-    public List<Hit> getHits() {
+    public List<HitVideo> getHits() {
         return hits;
     }
 
-    public void setHits(List<Hit> hits) {
+    public void setHits(List<HitVideo> hits) {
         this.hits = hits;
     }
 }

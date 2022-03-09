@@ -1,6 +1,7 @@
-package com.example.encard.model;
+package com.example.encard.model.Image;
 
 import com.example.encard.domain.Pixabay.RetrofitClient;
+import com.example.encard.model.Image.PixaBayResponse;
 import com.example.encard.utils.EndPoints;
 
 import retrofit2.Call;
