@@ -57,7 +57,7 @@ public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddV
                     @Override
                     public void run() {
                         String word = binding.editVideo.getText().toString();
-                        if (!word.equals("")) {
+                        if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();
                         }

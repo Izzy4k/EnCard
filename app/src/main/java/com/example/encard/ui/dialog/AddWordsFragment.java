@@ -61,7 +61,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
                     @Override
                     public void run() {
                         String word = binding.editWord.getText().toString();
-                        if (!word.equals("")) {
+                        if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();
                         }
