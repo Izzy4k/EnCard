@@ -35,18 +35,5 @@
         android:textColor="@color/black"
         android:textColorHint="@color/gray" />
 
-    <Button
-        android:id="@+id/btn_create_video"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/bg_btn_dialog"
-        android:padding="20dp"
-        android:text="Создать"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
 
 </LinearLayout>

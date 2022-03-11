@@ -1,6 +1,8 @@
 package com.example.encard.ui.dialog;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -10,10 +12,15 @@ import androidx.annotation.Nullable;
 import com.example.encard.base.BaseBottomSheetDialogFragment;
 import com.example.encard.databinding.FragmentAddVideoBinding;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddVideoBinding> {
     private final Result result;
     private final String EMPTY = "";
+    private Timer timer = new Timer();
+    private long INTERVAL = 2000;
 
     public AddVideoFragment(Result result) {
         this.result = result;
@@ -29,14 +36,33 @@ public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddV
         super.onViewCreated(view, savedInstanceState);
         initListener();
     }
+
     private void initListener() {
-        binding.btnCreateVideo.setOnClickListener(view -> {
-            String word = binding.editVideo.getText().toString().trim();
-            if (!word.equals(EMPTY)) {
-                result.putWord(word);
-                dismiss();
-            } else {
-                Toast.makeText(requireContext(), "Пусто", Toast.LENGTH_LONG).show();
+        binding.editVideo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                timer.cancel();
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        String word = binding.editVideo.getText().toString();
+                        if (!word.equals("")) {
+                            result.putWord(word);
+                            dismiss();
+                        }
+                    }
+                }, INTERVAL);
             }
         });
     }
