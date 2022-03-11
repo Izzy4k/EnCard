@@ -45,12 +45,12 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
         binding.editWord.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            timer.cancel();
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+            timer.cancel();
             }
 
             @Override
