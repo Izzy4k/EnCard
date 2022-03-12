@@ -1,6 +1,5 @@
 package com.example.encard.ui.fragment.translate;
 
-import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,8 +10,8 @@ import com.example.encard.model.translate.Translate;
 import com.example.encard.model.translate.TranslateStorage;
 
 public class TranslateViewModel extends ViewModel {
-    private MutableLiveData<Translate> translateMutableLiveData;
-    private MutableLiveData<PixaBayResponse> pixaBayResponseMutableLiveData;
+    private final MutableLiveData<Translate> translateMutableLiveData;
+    private final MutableLiveData<PixaBayResponse> pixaBayResponseMutableLiveData;
 
     public TranslateViewModel() {
         translateMutableLiveData = new MutableLiveData<>();
@@ -29,7 +28,6 @@ public class TranslateViewModel extends ViewModel {
             @Override
             public void onFailure(Throwable throwable) {
                 translateMutableLiveData.setValue(null);
-                Log.e("ABOBA", throwable + "");
             }
         });
     }
@@ -44,7 +42,6 @@ public class TranslateViewModel extends ViewModel {
             @Override
             public void onFailure(Throwable throwable) {
                 pixaBayResponseMutableLiveData.setValue(null);
-                Log.e("ABOBA", throwable + "");
             }
         });
     }

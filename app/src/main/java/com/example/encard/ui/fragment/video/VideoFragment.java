@@ -39,12 +39,13 @@ public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements
     }
 
     private void initListener() {
+        String NOT_FOUND = "Ничего не найдено";
         binding.rvVideo.setAdapter(videoAdapter);
         if (videoViewModel.getPixaBoyVideoMutableLiveData() != null) {
             videoViewModel.getPixaBoyVideoMutableLiveData().observe(getViewLifecycleOwner()
                     , pixaBoyVideo -> videoAdapter.setList(pixaBoyVideo.getHits()));
         } else {
-            Toast.makeText(requireContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+            Toast.makeText(requireContext(), NOT_FOUND, Toast.LENGTH_LONG).show();
         }
     }
 

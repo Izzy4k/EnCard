@@ -17,7 +17,7 @@ import java.util.TimerTask;
 public class AddTranslateFragment extends BaseBottomSheetDialogFragment<FragmentAddTranslateBinding> {
     private final Result result;
     private Timer timer = new Timer();
-    private long INTERVAL = 2000;
+    private final long INTERVAL = 2000;
 
     public AddTranslateFragment(Result result) {
         this.result = result;

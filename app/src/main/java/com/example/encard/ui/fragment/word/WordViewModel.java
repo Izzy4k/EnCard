@@ -8,7 +8,7 @@ import com.example.encard.model.Image.PixaBayResponse;
 import com.example.encard.model.Image.PixaBayStorage;
 
 public class WordViewModel extends ViewModel {
-    private MutableLiveData<PixaBayResponse> responseMutableLiveData;
+    private final MutableLiveData<PixaBayResponse> responseMutableLiveData;
 
     public WordViewModel() {
         responseMutableLiveData = new MutableLiveData<>();

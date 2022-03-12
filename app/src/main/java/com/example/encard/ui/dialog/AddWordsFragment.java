@@ -3,9 +3,7 @@ package com.example.encard.ui.dialog;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,7 +11,6 @@ import androidx.annotation.Nullable;
 import com.example.encard.base.BaseBottomSheetDialogFragment;
 import com.example.encard.databinding.FragmentAddWordsBinding;
 
-import org.w3c.dom.Text;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -22,7 +19,6 @@ import java.util.TimerTask;
 public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddWordsBinding> {
 
     private final Result result;
-    private final String EMPTY = "";
     private Timer timer = new Timer();
     private final long INTERVAL = 2000;
 
@@ -51,19 +47,16 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             timer.cancel();
-            Log.e("ABOBA","Timer didn't work");
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
                 timer.cancel();
-                Log.e("ABOBA",timer.purge()+"");
                 timer = new Timer();
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
                         String word = binding.editWord.getText().toString();
-                        Log.e("ABOBA","Timer is working");
                         if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();

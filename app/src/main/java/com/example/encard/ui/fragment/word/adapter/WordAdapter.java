@@ -1,6 +1,5 @@
 package com.example.encard.ui.fragment.word.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -39,7 +38,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         return list.size();
     }
 
-    public class WordViewHolder extends RecyclerView.ViewHolder {
+    public static class WordViewHolder extends RecyclerView.ViewHolder {
         ItemWordBinding binding;
 
         public WordViewHolder(@NonNull ItemWordBinding binding) {

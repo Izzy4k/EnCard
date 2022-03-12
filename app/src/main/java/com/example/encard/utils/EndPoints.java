@@ -8,13 +8,9 @@ public class EndPoints {
     public static final String VIDEOS = "videos/";
     public static final String VIDEOS_API = API + VIDEOS;
     public static final String KEY_RAPID = "30ff2e3f45mshdf615a789b9759cp14f62fjsnfd251b64f853";
-    public static final String API_HOST_RAPID = "x-rapidapi-host";
-    public static final String API_KEY_RAPID = "x-rapidapi-key";
-    public static final String API_TARGET_RAPID = "target";
     public static final String HOST_RAPID = "just-translated.p.rapidapi.com";
     public static final String LANG = "lang";
     public static final String TEXT = "text";
-    public static final String API_LANGUAGE_RAPID = "language/translate/v2/detect?";
     public static final String EN = "en";
     public static final String Q = "q";
 

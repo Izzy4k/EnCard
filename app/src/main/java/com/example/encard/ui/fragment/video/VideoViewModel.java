@@ -7,7 +7,7 @@ import com.example.encard.model.video.PixaBoyVideo;
 import com.example.encard.model.video.VideoStorage;
 
 public class VideoViewModel extends ViewModel {
-    private MutableLiveData<PixaBoyVideo> pixaBoyVideoMutableLiveData;
+    private final MutableLiveData<PixaBoyVideo> pixaBoyVideoMutableLiveData;
 
     public VideoViewModel() {
         pixaBoyVideoMutableLiveData = new MutableLiveData<>();

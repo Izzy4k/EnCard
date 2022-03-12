@@ -2,7 +2,6 @@ package com.example.encard.ui.fragment.video.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHolder> {
     private List<HitVideo> list = new ArrayList<>();
-    private Context context;
+    private final Context context;
 
     public VideoAdapter(Context context) {
         this.context = context;

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,7 +18,7 @@ import java.util.TimerTask;
 public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddVideoBinding> {
     private final Result result;
     private Timer timer = new Timer();
-    private long INTERVAL = 2000;
+    private final long INTERVAL = 2000;
 
     public AddVideoFragment(Result result) {
         this.result = result;
