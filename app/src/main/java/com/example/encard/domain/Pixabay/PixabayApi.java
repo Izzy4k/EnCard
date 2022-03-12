@@ -10,8 +10,8 @@ import retrofit2.http.Query;
 
 public interface PixabayApi {
     @GET(EndPoints.API)
-    Call<PixaBayResponse> getImage(@Query(EndPoints.APP_KEY) String key, @Query("q") String word);
+    Call<PixaBayResponse> getImage(@Query(EndPoints.APP_KEY) String key, @Query(EndPoints.Q) String word);
 
     @GET(EndPoints.VIDEOS_API)
-    Call<PixaBoyVideo> getVideo(@Query(EndPoints.APP_KEY) String key, @Query("q") String word);
+    Call<PixaBoyVideo> getVideo(@Query(EndPoints.APP_KEY) String key, @Query(EndPoints.Q) String word);
 }

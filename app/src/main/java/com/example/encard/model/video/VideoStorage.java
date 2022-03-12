@@ -1,5 +1,7 @@
 package com.example.encard.model.video;
 
+import androidx.annotation.NonNull;
+
 import com.example.encard.domain.Pixabay.RetrofitClient;
 import com.example.encard.utils.EndPoints;
 
@@ -11,14 +13,14 @@ public class VideoStorage {
     public static void getVideoGyId(String word, Result result) {
         RetrofitClient.getPixabay().getVideo(EndPoints.KEY, word).enqueue(new Callback<PixaBoyVideo>() {
             @Override
-            public void onResponse(Call<PixaBoyVideo> call, Response<PixaBoyVideo> response) {
+            public void onResponse(@NonNull Call<PixaBoyVideo> call, @NonNull Response<PixaBoyVideo> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     result.onSuccess(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<PixaBoyVideo> call, Throwable t) {
+            public void onFailure(@NonNull Call<PixaBoyVideo> call, @NonNull Throwable t) {
                 result.onFailure(t);
             }
         });

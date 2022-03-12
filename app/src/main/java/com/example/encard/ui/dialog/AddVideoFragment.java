@@ -18,7 +18,6 @@ import java.util.TimerTask;
 
 public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddVideoBinding> {
     private final Result result;
-    private final String EMPTY = "";
     private Timer timer = new Timer();
     private long INTERVAL = 2000;
 
@@ -41,7 +40,6 @@ public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddV
         binding.editVideo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                timer.cancel();
             }
 
             @Override

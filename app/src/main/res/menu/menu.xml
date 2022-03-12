@@ -10,7 +10,7 @@
         android:icon="@drawable/book_selector"
         android:title="@string/study" />
     <item android:title="" />
-    <item android:id="@+id/temp_fragment"
+    <item android:id="@+id/translateFragment"
         android:icon="@drawable/user_selector"
         android:title="@string/cab"/>
 </menu>

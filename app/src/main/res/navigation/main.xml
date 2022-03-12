@@ -16,5 +16,10 @@
         android:name="com.example.encard.ui.fragment.video.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/translateFragment"
+        android:name="com.example.encard.ui.fragment.translate.TranslateFragment"
+        android:label="fragment_translate"
+        tools:layout="@layout/fragment_translate" />
 
 </navigation>
