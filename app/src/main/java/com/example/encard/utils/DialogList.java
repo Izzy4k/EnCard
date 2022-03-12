@@ -30,6 +30,9 @@ public class DialogList {
     public void init(List<Hit> list) {
         wordAdapter.setList(list);
         binding.rvDialog.setAdapter(wordAdapter);
+        show();
+    }
+    public void show(){
         dialog.show();
     }
 }
