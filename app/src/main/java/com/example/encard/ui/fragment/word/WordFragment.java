@@ -11,18 +11,21 @@ import com.example.encard.base.BaseFragment;
 import com.example.encard.databinding.FragmentWordBinding;
 import com.example.encard.ui.dialog.AddWordsFragment;
 import com.example.encard.ui.fragment.word.adapter.WordAdapter;
+import com.example.encard.utils.DialogList;
 
 
 public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result {
     private WordViewModel wordViewModel;
     private final String AZA = "Aza";
     private WordAdapter wordAdapter;
+    private DialogList dialogList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         wordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
         wordAdapter = new WordAdapter();
+        dialogList = new DialogList(requireActivity());
     }
 
     @Override
@@ -41,8 +44,9 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
         binding.rvWord.setAdapter(wordAdapter);
         if (wordViewModel.getResponseMutableLiveData() != null) {
             wordViewModel.getResponseMutableLiveData().observe(getViewLifecycleOwner()
-                    , pixaBayResponse ->
-                            wordAdapter.setList(pixaBayResponse.getHits()));
+                    , pixaBayResponse -> {
+                    dialogList.init(pixaBayResponse.getHits());
+                    });
         }
     }
 
