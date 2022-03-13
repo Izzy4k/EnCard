@@ -15,6 +15,11 @@ import java.util.List;
 
 public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder> {
     private List<Hit> list = new ArrayList<>();
+    private final Result result;
+
+    public WordAdapter(Result result) {
+        this.result = result;
+    }
 
     public void setList(List<Hit> list) {
         this.list = list;
@@ -30,7 +35,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        holder.onBind(list.get(position).getLargeImageURL() , list.get(position).getUser());
+        holder.onBind(list.get(position).getLargeImageURL(), list.get(position).getUser());
+        holder.itemView.setOnClickListener(view ->
+                result.transaction(list.get(position).getLargeImageURL(),list.get(position)
+                        .getUser()));
     }
 
     @Override
@@ -46,9 +54,13 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
             this.binding = binding;
         }
 
-        public void onBind(String image , String title) {
+        public void onBind(String image, String title) {
             Glide.with(binding.itemImage).load(image).into(binding.itemImage);
             binding.itemTxtTitle.setText(title);
         }
+    }
+
+    public interface Result {
+        void transaction(String image, String title);
     }
 }

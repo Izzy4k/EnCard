@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="12dp"
-    tools:context=".ui.dialog.AddTranslateFragment">
+    tools:context=".ui.bottom_sheet_dialog.translate.AddTranslateFragment">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"

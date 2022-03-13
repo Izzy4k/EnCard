@@ -1,4 +1,4 @@
-package com.example.encard.ui.dialog;
+package com.example.encard.ui.bottom_sheet_dialog.word;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,24 +9,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.encard.base.BaseBottomSheetDialogFragment;
-import com.example.encard.databinding.FragmentAddVideoBinding;
+import com.example.encard.databinding.FragmentAddWordsBinding;
+
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddVideoBinding> {
+public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddWordsBinding> {
+
     private final Result result;
     private Timer timer = new Timer();
     private final long INTERVAL = 2000;
 
-    public AddVideoFragment(Result result) {
+    public AddWordsFragment(Result result) {
         this.result = result;
     }
 
     @Override
-    protected FragmentAddVideoBinding getBinding() {
-        return FragmentAddVideoBinding.inflate(getLayoutInflater());
+    public FragmentAddWordsBinding getBinding() {
+        return FragmentAddWordsBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -36,14 +38,15 @@ public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddV
     }
 
     private void initListener() {
-        binding.editVideo.addTextChangedListener(new TextWatcher() {
+
+        binding.editWord.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                timer.cancel();
+            timer.cancel();
             }
 
             @Override
@@ -53,7 +56,7 @@ public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddV
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        String word = binding.editVideo.getText().toString();
+                        String word = binding.editWord.getText().toString();
                         if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();

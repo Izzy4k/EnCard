@@ -7,25 +7,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.encard.R;
 import com.example.encard.base.BaseFragment;
 import com.example.encard.databinding.FragmentWordBinding;
-import com.example.encard.ui.dialog.AddWordsFragment;
-import com.example.encard.ui.fragment.word.adapter.WordAdapter;
-import com.example.encard.utils.DialogList;
+import com.example.encard.ui.bottom_sheet_dialog.word.AddWordsFragment;
+import com.example.encard.ui.dialog.dialog_list.DialogList;
+import com.example.encard.utils.KeyString;
 
 
-public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result {
+public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result,
+        DialogList.Result {
     private WordViewModel wordViewModel;
     private final String AZA = "Aza";
-    private WordAdapter wordAdapter;
     private DialogList dialogList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         wordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
-        wordAdapter = new WordAdapter();
-        dialogList = new DialogList(requireActivity());
+        dialogList = new DialogList(requireActivity(), this);
     }
 
     @Override
@@ -41,12 +41,9 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     }
 
     private void initListener() {
-        binding.rvWord.setAdapter(wordAdapter);
         if (wordViewModel.getResponseMutableLiveData() != null) {
             wordViewModel.getResponseMutableLiveData().observe(getViewLifecycleOwner()
-                    , pixaBayResponse -> {
-                    dialogList.init(pixaBayResponse.getHits());
-                    });
+                    , pixaBayResponse -> dialogList.init(pixaBayResponse.getHits()));
         }
     }
 
@@ -60,4 +57,14 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     public void putWord(String word) {
         wordViewModel.init(word);
     }
+
+    @Override
+    public void transfer(String image, String title) {
+        Bundle bundle = new Bundle();
+        bundle.putString(KeyString.IMAGE, image);
+        bundle.putString(KeyString.TITLE, title);
+        navigate(R.id.action_wordFragment_to_fullFragment, bundle);
+    }
+
+
 }

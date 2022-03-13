@@ -10,6 +10,9 @@
         android:name="com.example.encard.ui.fragment.word.WordFragment"
         android:label="fragment_word"
         tools:layout="@layout/fragment_word" >
+        <action
+            android:id="@+id/action_wordFragment_to_fullFragment"
+            app:destination="@id/fullFragment" />
     </fragment>
     <fragment
         android:id="@+id/videoFragment"
@@ -21,5 +24,10 @@
         android:name="com.example.encard.ui.fragment.translate.TranslateFragment"
         android:label="fragment_translate"
         tools:layout="@layout/fragment_translate" />
+    <fragment
+        android:id="@+id/fullFragment"
+        android:name="com.example.encard.ui.fragment.full.FullFragment"
+        android:label="fragment_full"
+        tools:layout="@layout/fragment_full" />
 
 </navigation>

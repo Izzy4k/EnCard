@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.encard.base.BaseFragment;
 import com.example.encard.databinding.FragmentVideoBinding;
-import com.example.encard.ui.dialog.AddVideoFragment;
+import com.example.encard.ui.bottom_sheet_dialog.video.AddVideoFragment;
 import com.example.encard.ui.fragment.video.adapter.VideoAdapter;
 
 

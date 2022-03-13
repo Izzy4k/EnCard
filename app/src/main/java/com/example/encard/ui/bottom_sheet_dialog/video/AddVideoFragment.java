@@ -1,4 +1,4 @@
-package com.example.encard.ui.dialog;
+package com.example.encard.ui.bottom_sheet_dialog.video;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,23 +9,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.encard.base.BaseBottomSheetDialogFragment;
-import com.example.encard.databinding.FragmentAddTranslateBinding;
+import com.example.encard.databinding.FragmentAddVideoBinding;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class AddTranslateFragment extends BaseBottomSheetDialogFragment<FragmentAddTranslateBinding> {
+
+public class AddVideoFragment extends BaseBottomSheetDialogFragment<FragmentAddVideoBinding> {
     private final Result result;
     private Timer timer = new Timer();
     private final long INTERVAL = 2000;
 
-    public AddTranslateFragment(Result result) {
+    public AddVideoFragment(Result result) {
         this.result = result;
     }
 
     @Override
-    protected FragmentAddTranslateBinding getBinding() {
-        return FragmentAddTranslateBinding.inflate(getLayoutInflater());
+    protected FragmentAddVideoBinding getBinding() {
+        return FragmentAddVideoBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -35,7 +36,7 @@ public class AddTranslateFragment extends BaseBottomSheetDialogFragment<Fragment
     }
 
     private void initListener() {
-        binding.editTranslate.addTextChangedListener(new TextWatcher() {
+        binding.editVideo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
@@ -52,7 +53,7 @@ public class AddTranslateFragment extends BaseBottomSheetDialogFragment<Fragment
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        String word = binding.editTranslate.getText().toString();
+                        String word = binding.editVideo.getText().toString();
                         if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();

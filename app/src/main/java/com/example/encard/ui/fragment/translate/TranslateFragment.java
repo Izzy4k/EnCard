@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.bumptech.glide.Glide;
 import com.example.encard.base.BaseFragment;
 import com.example.encard.databinding.FragmentTranslateBinding;
-import com.example.encard.ui.dialog.AddTranslateFragment;
+import com.example.encard.ui.bottom_sheet_dialog.translate.AddTranslateFragment;
 
 public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> implements AddTranslateFragment.Result {
     private TranslateViewModel translateViewModel;

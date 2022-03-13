@@ -1,4 +1,4 @@
-package com.example.encard.ui.dialog;
+package com.example.encard.ui.bottom_sheet_dialog.translate;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -9,26 +9,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.encard.base.BaseBottomSheetDialogFragment;
-import com.example.encard.databinding.FragmentAddWordsBinding;
-
+import com.example.encard.databinding.FragmentAddTranslateBinding;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddWordsBinding> {
-
+public class AddTranslateFragment extends BaseBottomSheetDialogFragment<FragmentAddTranslateBinding> {
     private final Result result;
     private Timer timer = new Timer();
     private final long INTERVAL = 2000;
 
-    public AddWordsFragment(Result result) {
+    public AddTranslateFragment(Result result) {
         this.result = result;
     }
 
     @Override
-    public FragmentAddWordsBinding getBinding() {
-        return FragmentAddWordsBinding.inflate(getLayoutInflater());
+    protected FragmentAddTranslateBinding getBinding() {
+        return FragmentAddTranslateBinding.inflate(getLayoutInflater());
     }
 
     @Override
@@ -38,15 +35,14 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
     }
 
     private void initListener() {
-
-        binding.editWord.addTextChangedListener(new TextWatcher() {
+        binding.editTranslate.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            timer.cancel();
+                timer.cancel();
             }
 
             @Override
@@ -56,7 +52,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        String word = binding.editWord.getText().toString();
+                        String word = binding.editTranslate.getText().toString();
                         if (!word.isEmpty()) {
                             result.putWord(word);
                             dismiss();
