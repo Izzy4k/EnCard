@@ -4,13 +4,16 @@
         android:id="@+id/videoFragment"
         android:icon="@drawable/calendar_selector"
         android:title="@string/today" />
-    <item android:title="" />
     <item
         android:id="@+id/wordFragment"
         android:icon="@drawable/book_selector"
         android:title="@string/study" />
-    <item android:title="" />
-    <item android:id="@+id/translateFragment"
+    <item
+        android:id="@+id/translateFragment"
         android:icon="@drawable/user_selector"
-        android:title="@string/cab"/>
+        android:title="@string/cab" />
+    <item
+        android:id="@+id/cardFragment"
+        android:icon="@drawable/card_selector"
+        android:title="@string/test" />
 </menu>

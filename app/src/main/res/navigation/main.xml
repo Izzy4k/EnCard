@@ -29,5 +29,10 @@
         android:name="com.example.encard.ui.fragment.full.FullFragment"
         android:label="fragment_full"
         tools:layout="@layout/fragment_full" />
+    <fragment
+        android:id="@+id/cardFragment"
+        android:name="com.example.encard.ui.fragment.card.CardFragment"
+        android:label="fragment_card"
+        tools:layout="@layout/fragment_card" />
 
 </navigation>
