@@ -2,8 +2,10 @@ package com.example.encard.ui.fragment.card;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,8 +16,11 @@ import com.example.encard.databinding.FragmentCardBinding;
 
 
 public class CardFragment extends BaseFragment<FragmentCardBinding> {
-    private float xDelta = 0.0f;
-    private float yDelta = 0.0f;
+    private float xDelta ;
+    private float yDelta ;
+    private final int  threshold = 100;
+    private final int velocity_threshold = 100;
+    private GestureDetector gestureDetector;
 
     @Override
     protected FragmentCardBinding getBinding() {
@@ -27,6 +32,44 @@ public class CardFragment extends BaseFragment<FragmentCardBinding> {
         super.onViewCreated(view, savedInstanceState);
         initTouchListener();
         initView();
+        initGestureListener();
+    }
+
+    private void initGestureListener() {
+        GestureDetector.SimpleOnGestureListener listener = new GestureDetector.
+                SimpleOnGestureListener() {
+            @Override
+            public boolean onDown(MotionEvent e) {
+                return true;
+            }
+
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+                                   float velocityY) {
+                float xDiff = e2.getX() - e1.getX();
+                float yDiff = e2.getY() - e2.getY();
+                try {
+                    if (Math.abs(xDiff) > Math.abs(yDiff)) {
+                        if (Math.abs(xDiff) > threshold &&
+                                Math.abs(velocityX) > velocity_threshold) {
+                            if (xDiff > 0) {
+                                Toast.makeText(requireContext(), "Свайп вправо",
+                                        Toast.LENGTH_LONG)
+                                        .show();
+                            } else {
+                                Toast.makeText(requireContext(), "Свайп влево",
+                                        Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return false;
+            }
+        };
+        gestureDetector = new GestureDetector(listener);
     }
 
     private void initView() {
@@ -50,7 +93,7 @@ public class CardFragment extends BaseFragment<FragmentCardBinding> {
                 default:
                     return false;
             }
-            return true;
+            return gestureDetector.onTouchEvent(motionEvent);
         });
     }
 }
