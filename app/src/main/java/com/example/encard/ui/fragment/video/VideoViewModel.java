@@ -6,14 +6,20 @@ import androidx.lifecycle.ViewModel;
 import com.example.encard.model.video.PixaBoyVideo;
 import com.example.encard.model.video.VideoStorage;
 
+import javax.inject.Inject;
+
 public class VideoViewModel extends ViewModel {
     private final MutableLiveData<PixaBoyVideo> pixaBoyVideoMutableLiveData;
+    private final VideoStorage videoStorage;
 
-    public VideoViewModel() {
+    @Inject
+    public VideoViewModel(VideoStorage videoStorage) {
+        this.videoStorage = videoStorage;
         pixaBoyVideoMutableLiveData = new MutableLiveData<>();
     }
-    public void init(String word){
-        VideoStorage.getVideoGyId(word, new VideoStorage.Result() {
+
+    public void init(String word) {
+       videoStorage.getVideoGyId(word, new VideoStorage.Result() {
             @Override
             public void onSuccess(PixaBoyVideo pixaBoyVideo) {
                 pixaBoyVideoMutableLiveData.setValue(pixaBoyVideo);

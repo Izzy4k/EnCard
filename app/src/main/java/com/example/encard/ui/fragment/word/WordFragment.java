@@ -14,17 +14,21 @@ import com.example.encard.ui.bottom_sheet_dialog.word.AddWordsFragment;
 import com.example.encard.ui.dialog.dialog_list.DialogList;
 import com.example.encard.utils.KeyString;
 
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result,
         DialogList.Result {
-    private WordViewModel wordViewModel;
+    @Inject
+    public WordViewModel wordViewModel;
     private final String AZA = "Aza";
     private DialogList dialogList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        wordViewModel = new ViewModelProvider(this).get(WordViewModel.class);
         dialogList = new DialogList(requireActivity(), this);
     }
 
@@ -63,7 +67,7 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
         Bundle bundle = new Bundle();
         bundle.putString(KeyString.IMAGE, image);
         bundle.putString(KeyString.TITLE, title);
-        navigate(R.id.action_wordFragment_to_fullFragment, bundle);
+        controller.navigate(R.id.action_wordFragment_to_fullFragment, bundle);
     }
 
 

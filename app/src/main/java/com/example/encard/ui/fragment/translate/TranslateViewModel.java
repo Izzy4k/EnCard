@@ -8,18 +8,26 @@ import com.example.encard.model.Image.PixaBayResponse;
 import com.example.encard.model.Image.PixaBayStorage;
 import com.example.encard.model.translate.Translate;
 import com.example.encard.model.translate.TranslateStorage;
+import com.example.encard.model.video.VideoStorage;
+
+import javax.inject.Inject;
 
 public class TranslateViewModel extends ViewModel {
     private final MutableLiveData<Translate> translateMutableLiveData;
     private final MutableLiveData<PixaBayResponse> pixaBayResponseMutableLiveData;
+    private final PixaBayStorage pixaBayStorage;
+    private final TranslateStorage translateStorage;
 
-    public TranslateViewModel() {
+    @Inject
+    public TranslateViewModel(PixaBayStorage pixaBayStorage, TranslateStorage translateStorage) {
+        this.pixaBayStorage = pixaBayStorage;
+        this.translateStorage = translateStorage;
         translateMutableLiveData = new MutableLiveData<>();
         pixaBayResponseMutableLiveData = new MutableLiveData<>();
     }
 
     public void initTranslate(String word) {
-        TranslateStorage.getTranslateGyId(word, new TranslateStorage.Result() {
+        translateStorage.getTranslateGyId(word, new TranslateStorage.Result() {
             @Override
             public void onSuccess(Translate translate) {
                 translateMutableLiveData.setValue(translate);
@@ -33,7 +41,7 @@ public class TranslateViewModel extends ViewModel {
     }
 
     public void initImage(String word) {
-        PixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
+        pixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 pixaBayResponseMutableLiveData.setValue(pixaBayResponse);

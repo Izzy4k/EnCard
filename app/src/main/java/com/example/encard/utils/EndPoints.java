@@ -1,6 +1,7 @@
 package com.example.encard.utils;
 
 
+
 public class EndPoints {
     public static final String APP_KEY = "key";
     public static final String KEY = "26046370-5ce93577ba93e567896de323d";
@@ -13,5 +14,6 @@ public class EndPoints {
     public static final String TEXT = "text";
     public static final String EN = "en";
     public static final String Q = "q";
+    public static final String ABOBA = "Aboba";
 
 }

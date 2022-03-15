@@ -10,10 +10,18 @@ import android.view.View;
 
 import com.example.encard.R;
 import com.example.encard.databinding.ActivityMainBinding;
+import com.example.encard.utils.Pref;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private NavController controller;
+    @Inject
+    public Pref pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         initNavigation();
         initNavigationListener();
+        navigateListener();
+    }
+
+    private void navigateListener() {
+        if(!pref.isBoardShow()){
+            controller.navigate(R.id.onBoardFragment);
+        }
     }
 
     private void initNavigation() {
@@ -32,11 +47,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initNavigationListener() {
+        binding.bottomNavigation.setItemIconTintList(null);
         controller.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
-            if (navDestination.getId() == R.id.fullFragment) {
-                binding.bottomNavigation.setVisibility(View.GONE);
-            } else {
-                binding.bottomNavigation.setVisibility(View.VISIBLE);
+            switch (navDestination.getId()){
+                case R.id.fullFragment:
+                case R.id.onBoardFragment:
+                    binding.bottomNavigation.setVisibility(View.GONE);
+                    break;
+                default:
+                    binding.bottomNavigation.setVisibility(View.VISIBLE);
             }
         });
     }

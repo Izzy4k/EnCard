@@ -1,8 +1,20 @@
+buildscript {
+    repositories {
+        // other repositories...
+        mavenCentral()
+    }
+    dependencies {
+        // other plugins...
+        classpath 'com.google.dagger:hilt-android-gradle-plugin:2.41'
+    }
+}
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id 'com.android.application' version '7.1.1' apply false
     id 'com.android.library' version '7.1.1' apply false
+//    id 'com.google.dagger:hilt-android-gradle-plugin' version '2.41' apply false
 }
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir

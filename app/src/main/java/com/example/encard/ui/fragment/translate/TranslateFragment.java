@@ -12,14 +12,19 @@ import com.example.encard.base.BaseFragment;
 import com.example.encard.databinding.FragmentTranslateBinding;
 import com.example.encard.ui.bottom_sheet_dialog.translate.AddTranslateFragment;
 
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> implements AddTranslateFragment.Result {
-    private TranslateViewModel translateViewModel;
+    @Inject
+    public TranslateViewModel translateViewModel;
     private final String AZA = "Aza";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        translateViewModel = new ViewModelProvider(this).get(TranslateViewModel.class);
     }
 
     @Override

@@ -19,6 +19,8 @@
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_calendar.xml" value="0.107" />
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_calendar_light.xml" value="0.107" />
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_dont_like_symbol_svgrepo_com.xml" value="0.1555" />
+        <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_ellipse.xml" value="0.1" />
+        <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_ellipse_light.xml" value="0.1" />
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_learning_svgrepo.xml" value="0.1555" />
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_learning_svgrepo_light.xml" value="0.1555" />
         <entry key="..\:/Code/EnCard/app/src/main/res/drawable/ic_like_svgrepo_com.xml" value="0.1555" />
@@ -31,11 +33,13 @@
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_add_translate.xml" value="0.25052083333333336" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_add_video.xml" value="0.25416666666666665" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_add_words.xml" value="0.25416666666666665" />
-        <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_card.xml" value="0.25416666666666665" />
+        <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_card.xml" value="0.176" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_full.xml" value="0.25416666666666665" />
+        <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_on_board.xml" value="0.2" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_translate.xml" value="0.25052083333333336" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_video.xml" value="0.176" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/fragment_word.xml" value="0.2" />
+        <entry key="..\:/Code/EnCard/app/src/main/res/layout/item_pager.xml" value="0.176" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/item_video.xml" value="0.25052083333333336" />
         <entry key="..\:/Code/EnCard/app/src/main/res/layout/item_word.xml" value="0.25416666666666665" />
         <entry key="..\:/Code/EnCard/app/src/main/res/menu/menu.xml" value="0.25416666666666665" />

@@ -15,25 +15,23 @@ import androidx.viewbinding.ViewBinding;
 import com.example.encard.R;
 
 public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
-   protected VB binding;
+    protected VB binding;
+    protected NavController controller;
 
-   protected   abstract VB getBinding();
+    protected abstract VB getBinding();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = getBinding();
+        initNavigation();
         return binding.getRoot();
     }
-    protected void navigate(int id, Bundle bundle) {
-        NavController controller = Navigation.findNavController
-                (requireActivity(), R.id.fragment_container);
-        controller.navigate(id, bundle);
-    }
 
-    protected void navigate(int id) {
-        NavController controller = Navigation.findNavController
+    private void initNavigation() {
+        controller = Navigation.findNavController
                 (requireActivity(), R.id.fragment_container);
-        controller.navigate(id);
     }
 }
+
+

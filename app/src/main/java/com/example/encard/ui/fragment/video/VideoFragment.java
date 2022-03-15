@@ -13,16 +13,20 @@ import com.example.encard.databinding.FragmentVideoBinding;
 import com.example.encard.ui.bottom_sheet_dialog.video.AddVideoFragment;
 import com.example.encard.ui.fragment.video.adapter.VideoAdapter;
 
+import javax.inject.Inject;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements AddVideoFragment.Result {
-    private VideoViewModel videoViewModel;
+    @Inject
+    public VideoViewModel videoViewModel;
     private final String OROZBEK = "Orozbek";
     private VideoAdapter videoAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        videoViewModel = new ViewModelProvider(this).get(VideoViewModel.class);
         videoAdapter = new VideoAdapter(requireContext());
     }
 

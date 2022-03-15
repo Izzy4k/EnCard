@@ -7,15 +7,20 @@ import androidx.lifecycle.ViewModel;
 import com.example.encard.model.Image.PixaBayResponse;
 import com.example.encard.model.Image.PixaBayStorage;
 
+import javax.inject.Inject;
+
 public class WordViewModel extends ViewModel {
     private final MutableLiveData<PixaBayResponse> responseMutableLiveData;
+    private final PixaBayStorage pixaBayStorage;
 
-    public WordViewModel() {
+    @Inject
+    public WordViewModel(PixaBayStorage pixaBayStorage) {
+        this.pixaBayStorage = pixaBayStorage;
         responseMutableLiveData = new MutableLiveData<>();
     }
 
     public void init(String word) {
-        PixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
+        pixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 responseMutableLiveData.setValue(pixaBayResponse);

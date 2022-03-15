@@ -3,16 +3,25 @@ package com.example.encard.model.translate;
 
 import androidx.annotation.NonNull;
 
-import com.example.encard.domain.rapid.TranslateRetrofit;
+import com.example.encard.domain.rapid.TranslateApi;
 import com.example.encard.utils.EndPoints;
+
+import javax.inject.Inject;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TranslateStorage {
-    public static void getTranslateGyId(String word, Result result) {
-        TranslateRetrofit.getTranslateApi().getTranslate(EndPoints.HOST_RAPID
+    private final TranslateApi translateApi;
+
+    @Inject
+    public TranslateStorage(TranslateApi translateApi) {
+        this.translateApi = translateApi;
+    }
+
+    public void getTranslateGyId(String word, Result result) {
+        translateApi.getTranslate(EndPoints.HOST_RAPID
                 , EndPoints.KEY_RAPID, EndPoints.EN, word).enqueue(new Callback<Translate>() {
             @Override
             public void onResponse(@NonNull Call<Translate> call, @NonNull Response<Translate> response) {
