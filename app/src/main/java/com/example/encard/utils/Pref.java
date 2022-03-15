@@ -1,18 +1,18 @@
 package com.example.encard.utils;
 
-import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 
-import androidx.annotation.NonNull;
+
+import javax.inject.Inject;
 
 
 public class Pref {
     private final SharedPreferences preferences;
 
-    public Pref(@NonNull Context context) {
-        this.preferences = context.getSharedPreferences(EndPoints.ABOBA, MODE_PRIVATE);
+    @Inject
+    public Pref(SharedPreferences sharedPreferences) {
+        this.preferences = sharedPreferences;
     }
 
     public void saveState() {

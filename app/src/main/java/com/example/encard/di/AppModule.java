@@ -1,6 +1,7 @@
 package com.example.encard.di;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.encard.App;
 import com.example.encard.domain.Pixabay.PixabayApi;
@@ -11,6 +12,7 @@ import com.example.encard.model.video.VideoStorage;
 import com.example.encard.ui.fragment.translate.TranslateViewModel;
 import com.example.encard.ui.fragment.video.VideoViewModel;
 import com.example.encard.ui.fragment.word.WordViewModel;
+import com.example.encard.utils.EndPoints;
 import com.example.encard.utils.Pref;
 
 
@@ -80,8 +82,15 @@ public class AppModule {
 
 
     @Provides
-    public Pref pref(@ApplicationContext Context context) {
-        return new Pref(context);
+    public SharedPreferences sharedPreferences(@ApplicationContext Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(EndPoints.ABOBA,
+                Context.MODE_PRIVATE);
+        return sharedPreferences;
+    }
+
+    @Provides
+    public Pref pref(SharedPreferences sharedPreferences) {
+        return new Pref(sharedPreferences);
     }
 
 }
