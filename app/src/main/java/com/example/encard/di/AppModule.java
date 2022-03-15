@@ -83,9 +83,8 @@ public class AppModule {
 
     @Provides
     public SharedPreferences sharedPreferences(@ApplicationContext Context context) {
-        SharedPreferences sharedPreferences = context.getSharedPreferences(EndPoints.ABOBA,
+        return context.getSharedPreferences(EndPoints.ABOBA,
                 Context.MODE_PRIVATE);
-        return sharedPreferences;
     }
 
     @Provides
