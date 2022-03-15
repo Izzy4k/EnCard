@@ -21,6 +21,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
     private final Result result;
     private Timer timer = new Timer();
     private final long INTERVAL = 2000;
+    private final int FIRST = 1;
 
     public AddWordsFragment(Result result) {
         this.result = result;
@@ -46,7 +47,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            timer.cancel();
+                timer.cancel();
             }
 
             @Override
@@ -58,7 +59,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
                     public void run() {
                         String word = binding.editWord.getText().toString();
                         if (!word.isEmpty()) {
-                            result.putWord(word);
+                            result.putWord(word, FIRST);
                             dismiss();
                         }
                     }
@@ -68,6 +69,6 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
     }
 
     public interface Result {
-        void putWord(String word);
+        void putWord(String word, int page);
     }
 }

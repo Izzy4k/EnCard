@@ -41,7 +41,7 @@ public class TranslateViewModel extends ViewModel {
     }
 
     public void initImage(String word) {
-        pixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
+        pixaBayStorage.getImageGyId(word, 1, new PixaBayStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 pixaBayResponseMutableLiveData.setValue(pixaBayResponse);

@@ -19,8 +19,8 @@ public class PixaBayStorage {
         this.pixabayApi = pixabayApi;
     }
 
-    public void getImageGyId(String word, Result result) {
-        pixabayApi.getImage(EndPoints.KEY, word).enqueue(new Callback<PixaBayResponse>() {
+    public void getImageGyId(String word, int page , Result result) {
+        pixabayApi.getImage(EndPoints.KEY, word, page).enqueue(new Callback<PixaBayResponse>() {
             @Override
             public void onResponse(@NonNull Call<PixaBayResponse> call, @NonNull Response<PixaBayResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

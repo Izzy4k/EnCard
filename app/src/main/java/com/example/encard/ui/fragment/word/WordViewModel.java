@@ -19,18 +19,18 @@ public class WordViewModel extends ViewModel {
         responseMutableLiveData = new MutableLiveData<>();
     }
 
-    public void init(String word) {
-        pixaBayStorage.getImageGyId(word, new PixaBayStorage.Result() {
-            @Override
-            public void onSuccess(PixaBayResponse pixaBayResponse) {
-                responseMutableLiveData.setValue(pixaBayResponse);
-            }
+    public void init(String word,int page) {
+      pixaBayStorage.getImageGyId(word, page, new PixaBayStorage.Result() {
+          @Override
+          public void onSuccess(PixaBayResponse pixaBayResponse) {
+              responseMutableLiveData.setValue(pixaBayResponse);
+          }
 
-            @Override
-            public void onFailure(Throwable throwable) {
-                responseMutableLiveData.setValue(null);
-            }
-        });
+          @Override
+          public void onFailure(Throwable throwable) {
+            responseMutableLiveData.setValue(null);
+          }
+      });
     }
 
     public MutableLiveData<PixaBayResponse> getResponseMutableLiveData() {

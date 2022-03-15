@@ -25,6 +25,7 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     public WordViewModel wordViewModel;
     private final String AZA = "Aza";
     private DialogList dialogList;
+    private String word;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,8 +59,9 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     }
 
     @Override
-    public void putWord(String word) {
-        wordViewModel.init(word);
+    public void putWord(String word, int page) {
+        this.word = word;
+        wordViewModel.init(word, page);
     }
 
     @Override
@@ -68,6 +70,11 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
         bundle.putString(KeyString.IMAGE, image);
         bundle.putString(KeyString.TITLE, title);
         controller.navigate(R.id.action_wordFragment_to_fullFragment, bundle);
+    }
+
+    @Override
+    public void slide(int page) {
+        wordViewModel.init(word, page);
     }
 
 

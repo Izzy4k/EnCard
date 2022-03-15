@@ -3,8 +3,11 @@ package com.example.encard.ui.dialog.dialog_list;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.os.Handler;
 import android.view.View;
 
+
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.encard.R;
 import com.example.encard.databinding.DialogPictureBinding;
@@ -18,6 +21,7 @@ public class DialogList implements WordAdapter.Result {
     private final WordAdapter wordAdapter;
     private final DialogPictureBinding binding;
     private final Result result;
+    private int page = 1;
 
     public DialogList(Activity activity, Result result) {
         this.result = result;
@@ -33,6 +37,18 @@ public class DialogList implements WordAdapter.Result {
         wordAdapter.setList(list);
         binding.rvDialog.setAdapter(wordAdapter);
         show();
+        initSwipeListener();
+    }
+
+    private void initSwipeListener() {
+        binding.dialogSwipeRefresh.setOnRefreshListener(() ->
+                new Handler().postDelayed(()
+                        -> {
+                    result.slide(++page);
+                    binding.dialogSwipeRefresh.setRefreshing(false);
+                }, 1000));
+        binding.dialogSwipeRefresh.setColorSchemeResources(R.color.black,
+                R.color.white, R.color.blue);
     }
 
     public void show() {
@@ -51,6 +67,8 @@ public class DialogList implements WordAdapter.Result {
 
     public interface Result {
         void transfer(String image, String title);
+
+        void slide(int page);
     }
 }
 
