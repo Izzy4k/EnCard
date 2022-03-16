@@ -2,10 +2,10 @@ package com.example.encard.ui.fragment.word;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.encard.R;
 import com.example.encard.base.BaseFragment;
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result,
-        DialogList.Result {
+        DialogList.Result, WordViewModel.Error {
     @Inject
     public WordViewModel wordViewModel;
     private final String AZA = "Aza";
@@ -41,15 +41,19 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initModel();
         initBtn();
         initListener();
     }
 
+    private void initModel() {
+        wordViewModel.setError(this);
+    }
+
     private void initListener() {
-        if (wordViewModel.getResponseMutableLiveData() != null) {
-            wordViewModel.getResponseMutableLiveData().observe(getViewLifecycleOwner()
-                    , pixaBayResponse -> dialogList.init(pixaBayResponse.getHits()));
-        }
+        wordViewModel.getResponseMutableLiveData().observe(getViewLifecycleOwner()
+                , pixaBayResponse -> dialogList.init(pixaBayResponse.getHits()));
+
     }
 
     private void initBtn() {
@@ -78,4 +82,9 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     }
 
 
+    @Override
+    public void nullPointer() {
+        dialogList.dismiss();
+        Toast.makeText(requireActivity(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+    }
 }

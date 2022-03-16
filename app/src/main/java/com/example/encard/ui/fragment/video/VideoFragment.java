@@ -18,7 +18,8 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements AddVideoFragment.Result {
+public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements
+        AddVideoFragment.Result, VideoViewModel.Exception {
     @Inject
     public VideoViewModel videoViewModel;
     private final String OROZBEK = "Orozbek";
@@ -39,18 +40,18 @@ public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initBtn();
+        initViewModel();
         initListener();
     }
 
+    private void initViewModel() {
+        videoViewModel.setException(this);
+    }
+
     private void initListener() {
-        String NOT_FOUND = "Ничего не найдено";
         binding.rvVideo.setAdapter(videoAdapter);
-        if (videoViewModel.getPixaBoyVideoMutableLiveData() != null) {
-            videoViewModel.getPixaBoyVideoMutableLiveData().observe(getViewLifecycleOwner()
-                    , pixaBoyVideo -> videoAdapter.setList(pixaBoyVideo.getHits()));
-        } else {
-            Toast.makeText(requireContext(), NOT_FOUND, Toast.LENGTH_LONG).show();
-        }
+        videoViewModel.getPixaBoyVideoMutableLiveData().observe(getViewLifecycleOwner()
+                , pixaBoyVideo -> videoAdapter.setList(pixaBoyVideo.getHits()));
     }
 
 
@@ -63,5 +64,10 @@ public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements
     @Override
     public void putWord(String word) {
         videoViewModel.init(word);
+    }
+
+    @Override
+    public void errorVideo() {
+        Toast.makeText(requireContext(), "Ничего не найдено", Toast.LENGTH_LONG).show();
     }
 }

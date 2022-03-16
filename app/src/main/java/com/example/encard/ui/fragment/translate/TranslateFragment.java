@@ -2,10 +2,11 @@ package com.example.encard.ui.fragment.translate;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
 import com.example.encard.base.BaseFragment;
@@ -17,7 +18,8 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> implements AddTranslateFragment.Result {
+public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> implements
+        AddTranslateFragment.Result, TranslateViewModel.Exception {
     @Inject
     public TranslateViewModel translateViewModel;
     private final String AZA = "Aza";
@@ -35,22 +37,33 @@ public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> im
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initModel();
         initBtn();
-        initListener();
+        initTranslateListener();
+        initImageListener();
     }
 
-    private void initListener() {
-        if (translateViewModel.getTranslateMutableLiveData() != null) {
-            translateViewModel.getTranslateMutableLiveData().observe(getViewLifecycleOwner()
-                    , translate ->
-                            binding.txtTranslate.setText(translate.getText().get(0)));
-        }
-        if (translateViewModel.getPixaBayResponseMutableLiveData() != null) {
-            translateViewModel.getPixaBayResponseMutableLiveData().observe(getViewLifecycleOwner(),
-                    pixaBayResponse ->
-                            Glide.with(binding.imageTranslate).load(pixaBayResponse.getHits()
-                                    .get(0).getLargeImageURL()).into(binding.imageTranslate));
-        }
+    private void initImageListener() {
+        translateViewModel.getPixaBayResponseMutableLiveData().observe(getViewLifecycleOwner(),
+                pixaBayResponse ->
+                        Glide.with(binding.imageTranslate).load(pixaBayResponse.getHits()
+                                .get(0).getLargeImageURL()).into(binding.imageTranslate));
+        translateViewModel.getErrorMessageImage().observe(getViewLifecycleOwner(),
+                s -> Toast.makeText(requireActivity(),s,Toast.LENGTH_LONG).show());
+
+    }
+
+    private void initTranslateListener() {
+        translateViewModel.getTranslateMutableLiveData().observe(getViewLifecycleOwner()
+                , translate ->
+                        binding.txtTranslate.setText(translate.getText().get(0)));
+        translateViewModel.getErrorMessageTranslate().observe(getViewLifecycleOwner(),
+                s -> Toast.makeText(requireActivity(), s, Toast.LENGTH_LONG).show());
+
+    }
+
+    private void initModel() {
+        translateViewModel.setException(this);
     }
 
     private void initBtn() {
@@ -64,5 +77,10 @@ public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> im
     public void putWord(String word) {
         translateViewModel.initTranslate(word);
         translateViewModel.initImage(word);
+    }
+
+    @Override
+    public void errorImage() {
+        Toast.makeText(requireActivity(), "Изоброжение не найдено!", Toast.LENGTH_LONG).show();
     }
 }
