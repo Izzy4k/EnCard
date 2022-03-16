@@ -15,5 +15,7 @@ public class EndPoints {
     public static final String Q = "q";
     public static final String ABOBA = "Aboba";
     public static final String PAGE = "page";
+    public static final String LIMIT = "per_page";
+    public static final int TEN = 10;
 
 }

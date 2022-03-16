@@ -22,7 +22,7 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
     }
 
     public void setList(List<Hit> list) {
-        this.list = list;
+        this.list.addAll(list);
         notifyDataSetChanged();
     }
 

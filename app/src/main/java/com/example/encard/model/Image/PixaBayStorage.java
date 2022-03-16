@@ -20,7 +20,7 @@ public class PixaBayStorage {
     }
 
     public void getImageGyId(String word, int page , Result result) {
-        pixabayApi.getImagePage(EndPoints.KEY, word, page).enqueue(new Callback<PixaBayResponse>() {
+        pixabayApi.getImagePage(EndPoints.KEY, word, page,EndPoints.TEN).enqueue(new Callback<PixaBayResponse>() {
             @Override
             public void onResponse(@NonNull Call<PixaBayResponse> call, @NonNull Response<PixaBayResponse> response) {
                 if (response.isSuccessful() && response.body() != null) {

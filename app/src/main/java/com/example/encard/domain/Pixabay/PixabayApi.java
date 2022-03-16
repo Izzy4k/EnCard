@@ -12,7 +12,7 @@ public interface PixabayApi {
     @GET(EndPoints.API)
     Call<PixaBayResponse> getImagePage(@Query(EndPoints.APP_KEY) String key,
                                        @Query(EndPoints.Q) String word
-            , @Query(EndPoints.PAGE) int page);
+            , @Query(EndPoints.PAGE) int page , @Query(EndPoints.LIMIT) int limit);
 
     @GET(EndPoints.VIDEOS_API)
     Call<PixaBoyVideo> getVideo(@Query(EndPoints.APP_KEY) String key, @Query(EndPoints.Q) String word);
