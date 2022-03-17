@@ -1,27 +1,25 @@
 package com.example.encard.ui.fragment.translate;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 
 import com.bumptech.glide.Glide;
-import com.example.encard.base.BaseFragment;
+import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentTranslateBinding;
 import com.example.encard.ui.bottom_sheet_dialog.translate.AddTranslateFragment;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
+import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @AndroidEntryPoint
 public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> implements
         AddTranslateFragment.Result, TranslateViewModel.Exception {
     @Inject
-    public TranslateViewModel translateViewModel;
+    public TranslateViewModel translateViewModel ;
     private final String AZA = "Aza";
 
     @Override
@@ -35,13 +33,17 @@ public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> im
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initModel();
         initBtn();
-        initTranslateListener();
-        initImageListener();
     }
+
+    @Override
+    protected void setupObservers() {
+        initImageListener();
+        initTranslateListener();
+    }
+
 
     private void initImageListener() {
         translateViewModel.getPixaBayResponseMutableLiveData().observe(getViewLifecycleOwner(),
@@ -81,6 +83,8 @@ public class TranslateFragment extends BaseFragment<FragmentTranslateBinding> im
 
     @Override
     public void errorImage() {
-        Toast.makeText(requireActivity(), "Изоброжение не найдено!", Toast.LENGTH_LONG).show();
+        Toast.makeText(requireActivity(),
+                "Изоброжение не найдено!",
+                Toast.LENGTH_LONG).show();
     }
 }

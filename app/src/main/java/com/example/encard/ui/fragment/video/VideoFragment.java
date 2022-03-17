@@ -1,14 +1,11 @@
 package com.example.encard.ui.fragment.video;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.example.encard.base.BaseFragment;
+import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentVideoBinding;
 import com.example.encard.ui.bottom_sheet_dialog.video.AddVideoFragment;
 import com.example.encard.ui.fragment.video.adapter.VideoAdapter;
@@ -37,12 +34,16 @@ public class VideoFragment extends BaseFragment<FragmentVideoBinding> implements
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        initBtn();
+    protected void setupUi() {
         initViewModel();
+        initBtn();
+    }
+
+    @Override
+    protected void setupObservers() {
         initListener();
     }
+
 
     private void initViewModel() {
         videoViewModel.setException(this);

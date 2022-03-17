@@ -4,26 +4,26 @@ package com.example.encard.ui.fragment.word;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.encard.model.Image.PixaBayResponse;
-import com.example.encard.model.Image.PixaBayStorage;
+import com.example.encard.domain.model.Image.repo.ImageStorage;
+import com.example.encard.domain.model.Image.entity.PixaBayResponse;
 
 import javax.inject.Inject;
 
 public class WordViewModel extends ViewModel  {
     private final MutableLiveData<PixaBayResponse> responseMutableLiveData;
-    private final PixaBayStorage pixaBayStorage;
+    private final ImageStorage imageStorage;
     private final MutableLiveData<String> errorMessage;
     private Error error;
 
     @Inject
-    public WordViewModel(PixaBayStorage pixaBayStorage) {
-        this.pixaBayStorage = pixaBayStorage;
+    public WordViewModel(ImageStorage imageStorage) {
+        this.imageStorage = imageStorage;
         responseMutableLiveData = new MutableLiveData<>();
         errorMessage = new MutableLiveData<>();
     }
 
     public void init(String word, int page) {
-        pixaBayStorage.getImageGyId(word, page, new PixaBayStorage.Result() {
+        imageStorage.getImageGyId(word, page, new ImageStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 if (!pixaBayResponse.getHits().isEmpty())

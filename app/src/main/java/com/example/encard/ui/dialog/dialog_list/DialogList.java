@@ -7,11 +7,9 @@ import android.os.Handler;
 import android.view.View;
 
 
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.example.encard.R;
 import com.example.encard.databinding.DialogPictureBinding;
-import com.example.encard.model.Image.Hit;
+import com.example.encard.domain.model.Image.entity.Hit;
 import com.example.encard.ui.fragment.word.adapter.WordAdapter;
 
 import java.util.List;

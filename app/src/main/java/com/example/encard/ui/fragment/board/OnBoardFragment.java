@@ -4,15 +4,14 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.encard.R;
-import com.example.encard.base.BaseFragment;
+import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentOnBoardBinding;
 import com.example.encard.ui.fragment.board.adapter.BoardAdapter;
-import com.example.encard.utils.Pref;
+import com.example.encard.data.local.utils.Pref;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -37,15 +36,19 @@ public class OnBoardFragment extends BaseFragment<FragmentOnBoardBinding> {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initViewPager();
+        initPager();
         initBtn();
         initBack();
-        initPager();
-        initListenerPager();
-        initTabListener();
     }
+
+    @Override
+    protected void setupObservers() {
+        initTabListener();
+        initListenerPager();
+    }
+
 
     private void initViewPager() {
         BoardAdapter boardAdapter = new BoardAdapter();

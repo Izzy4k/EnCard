@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.example.encard.R;
 import com.example.encard.databinding.ActivityMainBinding;
-import com.example.encard.utils.Pref;
+import com.example.encard.data.local.utils.Pref;
 
 import javax.inject.Inject;
 

@@ -4,26 +4,28 @@ package com.example.encard.ui.fragment.translate;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.encard.model.Image.PixaBayResponse;
-import com.example.encard.model.Image.PixaBayStorage;
-import com.example.encard.model.translate.Translate;
-import com.example.encard.model.translate.TranslateStorage;
-import com.example.encard.ui.fragment.word.WordViewModel;
+import com.example.encard.domain.model.Image.entity.PixaBayResponse;
+import com.example.encard.domain.model.Image.repo.ImageStorage;
+import com.example.encard.domain.model.translate.entity.Translate;
+import com.example.encard.domain.model.translate.repo.TranslateStorage;
 
 import javax.inject.Inject;
 
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
 public class TranslateViewModel extends ViewModel {
     private final MutableLiveData<Translate> translateMutableLiveData;
     private final MutableLiveData<PixaBayResponse> pixaBayResponseMutableLiveData;
     private final MutableLiveData<String> errorMessageTranslate;
     private final MutableLiveData<String> errorMessageImage;
-    private final PixaBayStorage pixaBayStorage;
+    private final ImageStorage imageStorage;
     private final TranslateStorage translateStorage;
     private Exception exception;
 
     @Inject
-    public TranslateViewModel(PixaBayStorage pixaBayStorage, TranslateStorage translateStorage) {
-        this.pixaBayStorage = pixaBayStorage;
+    public TranslateViewModel(ImageStorage imageStorage, TranslateStorage translateStorage) {
+        this.imageStorage = imageStorage;
         this.translateStorage = translateStorage;
         translateMutableLiveData = new MutableLiveData<>();
         pixaBayResponseMutableLiveData = new MutableLiveData<>();
@@ -47,7 +49,7 @@ public class TranslateViewModel extends ViewModel {
 
     public void initImage(String word) {
         int page = 1;
-        pixaBayStorage.getImageGyId(word, page, new PixaBayStorage.Result() {
+        imageStorage.getImageGyId(word, page, new ImageStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 if (!pixaBayResponse.getHits().isEmpty())

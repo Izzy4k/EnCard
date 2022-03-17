@@ -3,8 +3,8 @@ package com.example.encard.ui.fragment.video;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.encard.model.video.PixaBoyVideo;
-import com.example.encard.model.video.VideoStorage;
+import com.example.encard.domain.model.video.entity.PixaBoyVideo;
+import com.example.encard.domain.model.video.repo.VideoStorage;
 
 import javax.inject.Inject;
 

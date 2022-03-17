@@ -1,14 +1,12 @@
 package com.example.encard.ui.fragment.word;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.encard.R;
-import com.example.encard.base.BaseFragment;
+import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentWordBinding;
 import com.example.encard.ui.bottom_sheet_dialog.word.AddWordsFragment;
 import com.example.encard.ui.dialog.dialog_list.DialogList;
@@ -39,12 +37,16 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initModel();
         initBtn();
+    }
+
+    @Override
+    protected void setupObservers() {
         initListener();
     }
+
 
     private void initModel() {
         wordViewModel.setError(this);

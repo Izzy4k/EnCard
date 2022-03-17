@@ -1,13 +1,8 @@
 package com.example.encard.ui.fragment.full;
 
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
-import com.example.encard.base.BaseFragment;
+import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentFullBinding;
 import com.example.encard.utils.KeyString;
 
@@ -19,10 +14,15 @@ public class FullFragment extends BaseFragment<FragmentFullBinding> {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initArguments();
     }
+
+    @Override
+    protected void setupObservers() {
+
+    }
+
 
     private void initArguments() {
         if (getArguments() != null) {

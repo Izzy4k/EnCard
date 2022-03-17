@@ -17,5 +17,7 @@ public class EndPoints {
     public static final String PAGE = "page";
     public static final String LIMIT = "per_page";
     public static final int TEN = 10;
+    public static final String BASE_URL_PIXA = "https://pixabay.com/";
+    public static final String BASE_URL_TRANSLATE = "https://just-translated.p.rapidapi.com";
 
 }

@@ -8,7 +8,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.encard.base.BaseBottomSheetDialogFragment;
+import com.example.encard.ui.base.BaseBottomSheetDialogFragment;
 import com.example.encard.databinding.FragmentAddVideoBinding;
 
 import java.util.Timer;

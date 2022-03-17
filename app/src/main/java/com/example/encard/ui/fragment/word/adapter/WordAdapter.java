@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.encard.databinding.ItemWordBinding;
-import com.example.encard.model.Image.Hit;
+import com.example.encard.domain.model.Image.entity.Hit;
 
 import java.util.ArrayList;
 import java.util.List;
