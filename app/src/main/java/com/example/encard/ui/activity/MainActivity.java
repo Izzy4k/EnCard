@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private NavController controller;
     @Inject
     public Pref pref;
+    public Pref pref1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
