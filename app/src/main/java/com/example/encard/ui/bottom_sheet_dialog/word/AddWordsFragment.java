@@ -33,8 +33,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initListener();
     }
 
@@ -59,7 +58,7 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
                     public void run() {
                         String word = binding.editWord.getText().toString();
                         if (!word.isEmpty()) {
-                            result.putWord(word, FIRST);
+                            result.putWord(word, FIRST,getTag());
                             dismiss();
                         }
                     }
@@ -69,6 +68,6 @@ public class AddWordsFragment extends BaseBottomSheetDialogFragment<FragmentAddW
     }
 
     public interface Result {
-        void putWord(String word, int page);
+        void putWord(String word, int page , String category);
     }
 }

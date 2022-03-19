@@ -9,4 +9,6 @@
     <string name="test">Тест</string>
     <string name="remember">Помните?</string>
     <string name="let_s_do_it">Let’s do it</string>
+    <string name="category">Категории</string>
+    <string name="closed">Закрыть</string>
 </resources>

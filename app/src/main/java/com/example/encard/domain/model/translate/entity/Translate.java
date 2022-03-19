@@ -7,37 +7,92 @@ import java.util.List;
 
 public class Translate {
 
-    @SerializedName("lang")
+    @SerializedName("responseData")
     @Expose
-    private String lang;
-    @SerializedName("text")
+    private ResponseData responseData;
+    @SerializedName("quotaFinished")
     @Expose
-    private List<String> text = null;
-    @SerializedName("code")
+    private Boolean quotaFinished;
+    @SerializedName("mtLangSupported")
     @Expose
-    private Integer code;
+    private Object mtLangSupported;
+    @SerializedName("responseDetails")
+    @Expose
+    private String responseDetails;
+    @SerializedName("responseStatus")
+    @Expose
+    private Integer responseStatus;
+    @SerializedName("responderId")
+    @Expose
+    private String responderId;
+    @SerializedName("exception_code")
+    @Expose
+    private Object exceptionCode;
+    @SerializedName("matches")
+    @Expose
+    private List<Match> matches = null;
 
-    public String getLang() {
-        return lang;
+    public ResponseData getResponseData() {
+        return responseData;
     }
 
-    public void setLang(String lang) {
-        this.lang = lang;
+    public void setResponseData(ResponseData responseData) {
+        this.responseData = responseData;
     }
 
-    public List<String> getText() {
-        return text;
+    public Boolean getQuotaFinished() {
+        return quotaFinished;
     }
 
-    public void setText(List<String> text) {
-        this.text = text;
+    public void setQuotaFinished(Boolean quotaFinished) {
+        this.quotaFinished = quotaFinished;
     }
 
-    public Integer getCode() {
-        return code;
+    public Object getMtLangSupported() {
+        return mtLangSupported;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setMtLangSupported(Object mtLangSupported) {
+        this.mtLangSupported = mtLangSupported;
+    }
+
+    public String getResponseDetails() {
+        return responseDetails;
+    }
+
+    public void setResponseDetails(String responseDetails) {
+        this.responseDetails = responseDetails;
+    }
+
+    public Integer getResponseStatus() {
+        return responseStatus;
+    }
+
+    public void setResponseStatus(Integer responseStatus) {
+        this.responseStatus = responseStatus;
+    }
+
+    public String getResponderId() {
+        return responderId;
+    }
+
+    public void setResponderId(String responderId) {
+        this.responderId = responderId;
+    }
+
+    public Object getExceptionCode() {
+        return exceptionCode;
+    }
+
+    public void setExceptionCode(Object exceptionCode) {
+        this.exceptionCode = exceptionCode;
+    }
+
+    public List<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(List<Match> matches) {
+        this.matches = matches;
     }
 }

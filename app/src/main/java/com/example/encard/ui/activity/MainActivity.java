@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void navigateListener() {
-        if(!pref.isBoardShow()){
+        if (!pref.isBoardShow()) {
             controller.navigate(R.id.onBoardFragment);
         }
     }
@@ -49,13 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private void initNavigationListener() {
         binding.bottomNavigation.setItemIconTintList(null);
         controller.addOnDestinationChangedListener((navController, navDestination, bundle) -> {
-            switch (navDestination.getId()){
-                case R.id.fullFragment:
-                case R.id.onBoardFragment:
-                    binding.bottomNavigation.setVisibility(View.GONE);
-                    break;
-                default:
-                    binding.bottomNavigation.setVisibility(View.VISIBLE);
+            if (navDestination.getId() == R.id.onBoardFragment) {
+                binding.bottomNavigation.setVisibility(View.GONE);
+            } else {
+                binding.bottomNavigation.setVisibility(View.VISIBLE);
             }
         });
     }

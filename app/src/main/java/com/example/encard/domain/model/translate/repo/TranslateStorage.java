@@ -1,6 +1,8 @@
 package com.example.encard.domain.model.translate.repo;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.example.encard.data.network.model.translate.remote.TranslateApi;
@@ -23,17 +25,19 @@ public class TranslateStorage {
 
     public void getTranslateGyId(String word, Result result) {
         translateApi.getTranslate(EndPoints.HOST_RAPID
-                , EndPoints.KEY_RAPID, EndPoints.EN, word).enqueue(new Callback<Translate>() {
+                , EndPoints.KEY_RAPID, EndPoints.EN_RU, word).enqueue(new Callback<Translate>() {
             @Override
             public void onResponse(@NonNull Call<Translate> call, @NonNull Response<Translate> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     result.onSuccess(response.body());
+                    Log.e("ABOBA", response + "");
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<Translate> call, @NonNull Throwable t) {
                 result.onFailure(t);
+                Log.e("ABOBA",t.getMessage() + "" );
 
             }
         });

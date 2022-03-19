@@ -9,7 +9,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface TranslateApi {
-    @GET("/")
+    @GET(EndPoints.GET_API)
     Call<Translate> getTranslate(
             @Header("X-RapidAPI-Host") String host,@Header("X-RapidAPI-Key") String key
             ,@Query(EndPoints.LANG) String language,

@@ -1,35 +1,31 @@
 package com.example.encard.ui.fragment.word;
 
-import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 
-import com.example.encard.R;
+
 import com.example.encard.ui.base.BaseFragment;
 import com.example.encard.databinding.FragmentWordBinding;
 import com.example.encard.ui.bottom_sheet_dialog.word.AddWordsFragment;
-import com.example.encard.ui.dialog.dialog_list.DialogList;
-import com.example.encard.utils.KeyString;
+import com.example.encard.ui.dialog.dialog_list.DialogFull;
+import com.example.encard.ui.fragment.translate.TranslateViewModel;
+import com.example.encard.ui.fragment.word.adapter.WordAdapter;
+
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class WordFragment extends BaseFragment<FragmentWordBinding> implements AddWordsFragment.Result,
-        DialogList.Result, WordViewModel.Error {
+public class WordFragment extends BaseFragment<FragmentWordBinding>
+        implements AddWordsFragment.Result,
+        WordViewModel.Error, WordAdapter.Result {
     @Inject
     public WordViewModel wordViewModel;
-    private final String AZA = "Aza";
-    private DialogList dialogList;
-    private String word;
+    private String categoryTag;
+    private WordAdapter wordAdapter;
+    private DialogFull dialogFull;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        dialogList = new DialogList(requireActivity(), this);
-    }
 
     @Override
     protected FragmentWordBinding getBinding() {
@@ -40,11 +36,34 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
     protected void setupUi() {
         initModel();
         initBtn();
+        initAdapter();
+        initDialog();
+    }
+
+    private void initDialog() {
+        dialogFull = new DialogFull(requireActivity());
+    }
+
+    private void initAdapter() {
+        wordAdapter = new WordAdapter(this);
+        binding.rvWord.setAdapter(wordAdapter);
     }
 
     @Override
     protected void setupObservers() {
+        initArguments();
         initListener();
+    }
+
+
+
+    private void initListener() {
+        wordViewModel.getWords(categoryTag).observe(getViewLifecycleOwner(), wordEntities ->
+                wordAdapter.setList(wordEntities));
+    }
+
+    private void initArguments() {
+        categoryTag = WordFragmentArgs.fromBundle(getArguments()).getCategory();
     }
 
 
@@ -52,41 +71,26 @@ public class WordFragment extends BaseFragment<FragmentWordBinding> implements A
         wordViewModel.setError(this);
     }
 
-    private void initListener() {
-        wordViewModel.getResponseMutableLiveData().observe(getViewLifecycleOwner()
-                , pixaBayResponse -> dialogList.init(pixaBayResponse.getHits()));
-
-    }
 
     private void initBtn() {
         binding.btnNewWord.setOnClickListener(view ->
                 new AddWordsFragment(this).show(requireActivity()
-                        .getSupportFragmentManager(), AZA));
+                        .getSupportFragmentManager(), categoryTag));
     }
 
     @Override
-    public void putWord(String word, int page) {
-        this.word = word;
-        wordViewModel.init(word, page);
-    }
-
-    @Override
-    public void transfer(String image, String title) {
-        Bundle bundle = new Bundle();
-        bundle.putString(KeyString.IMAGE, image);
-        bundle.putString(KeyString.TITLE, title);
-        controller.navigate(R.id.action_wordFragment_to_fullFragment, bundle);
-    }
-
-    @Override
-    public void slide(int page) {
-        wordViewModel.init(word, page);
+    public void putWord(String word, int page, String categoryTag) {
+        wordViewModel.init(word, page, categoryTag);
     }
 
 
     @Override
     public void nullPointer() {
-        dialogList.dismiss();
         Toast.makeText(requireActivity(), "Ничего не найдено", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void openDialog(String image, String title) {
+       dialogFull.open(image,title);
     }
 }

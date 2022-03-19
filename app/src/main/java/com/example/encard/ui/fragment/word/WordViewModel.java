@@ -1,33 +1,43 @@
 package com.example.encard.ui.fragment.word;
 
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.encard.domain.model.Image.repo.ImageStorage;
 import com.example.encard.domain.model.Image.entity.PixaBayResponse;
+import com.example.encard.domain.model.translate.entity.Translate;
+import com.example.encard.domain.model.translate.repo.TranslateStorage;
+import com.example.encard.domain.model.word.entity.WordEntity;
+import com.example.encard.domain.model.word.repo.WordStorage;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
-public class WordViewModel extends ViewModel  {
-    private final MutableLiveData<PixaBayResponse> responseMutableLiveData;
-    private final ImageStorage imageStorage;
+public class WordViewModel extends ViewModel {
     private final MutableLiveData<String> errorMessage;
+    private final ImageStorage imageStorage;
+    private final WordStorage wordStorage;
     private Error error;
 
     @Inject
-    public WordViewModel(ImageStorage imageStorage) {
+    public WordViewModel(ImageStorage imageStorage,
+                         WordStorage wordStorage) {
         this.imageStorage = imageStorage;
-        responseMutableLiveData = new MutableLiveData<>();
+        this.wordStorage = wordStorage;
         errorMessage = new MutableLiveData<>();
     }
 
-    public void init(String word, int page) {
+    public void init(String word, int page, String category) {
         imageStorage.getImageGyId(word, page, new ImageStorage.Result() {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 if (!pixaBayResponse.getHits().isEmpty())
-                    responseMutableLiveData.setValue(pixaBayResponse);
+                    wordStorage.create(new WordEntity(word, category, pixaBayResponse
+                            .getHits()
+                            .get(0).getLargeImageURL()));
                 else error.nullPointer();
             }
 
@@ -38,13 +48,14 @@ public class WordViewModel extends ViewModel  {
         });
     }
 
+    public LiveData<List<WordEntity>> getWords(String category) {
+        return wordStorage.getWords(category);
+    }
+
     public void setError(Error error) {
         this.error = error;
     }
 
-    public MutableLiveData<PixaBayResponse> getResponseMutableLiveData() {
-        return responseMutableLiveData;
-    }
 
     public interface Error {
         void nullPointer();

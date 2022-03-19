@@ -3,32 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    app:startDestination="@id/videoFragment">
-
+    app:startDestination="@id/categoryFragment">
     <fragment
         android:id="@+id/wordFragment"
         android:name="com.example.encard.ui.fragment.word.WordFragment"
         android:label="fragment_word"
-        tools:layout="@layout/fragment_word" >
-        <action
-            android:id="@+id/action_wordFragment_to_fullFragment"
-            app:destination="@id/fullFragment" />
+        tools:layout="@layout/fragment_word">
+        <argument
+            android:name="category"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/videoFragment"
         android:name="com.example.encard.ui.fragment.video.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
-    <fragment
-        android:id="@+id/translateFragment"
-        android:name="com.example.encard.ui.fragment.translate.TranslateFragment"
-        android:label="fragment_translate"
-        tools:layout="@layout/fragment_translate" />
-    <fragment
-        android:id="@+id/fullFragment"
-        android:name="com.example.encard.ui.fragment.full.FullFragment"
-        android:label="fragment_full"
-        tools:layout="@layout/fragment_full" />
     <fragment
         android:id="@+id/cardFragment"
         android:name="com.example.encard.ui.fragment.card.CardFragment"
@@ -39,5 +29,14 @@
         android:name="com.example.encard.ui.fragment.board.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/categoryFragment"
+        android:name="com.example.encard.ui.fragment.category.CategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/fragment_category">
+        <action
+            android:id="@+id/action_categoryFragment_to_wordFragment"
+            app:destination="@id/wordFragment" />
+    </fragment>
 
 </navigation>

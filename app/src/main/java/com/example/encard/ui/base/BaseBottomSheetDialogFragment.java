@@ -19,9 +19,19 @@ public abstract class BaseBottomSheetDialogFragment<VB extends ViewBinding>
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         binding = getBinding();
         return binding.getRoot();
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setupUi();
+    }
+
+    protected abstract void setupUi();
 
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs'
 }
 
 android {
@@ -65,4 +66,10 @@ dependencies {
     //Lottie
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    //Room
+    def room_version = "2.4.2"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
 }

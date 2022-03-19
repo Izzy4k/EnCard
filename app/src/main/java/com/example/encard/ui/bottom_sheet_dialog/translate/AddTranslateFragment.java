@@ -1,12 +1,7 @@
 package com.example.encard.ui.bottom_sheet_dialog.translate;
 
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.example.encard.ui.base.BaseBottomSheetDialogFragment;
 import com.example.encard.databinding.FragmentAddTranslateBinding;
@@ -29,8 +24,7 @@ public class AddTranslateFragment extends BaseBottomSheetDialogFragment<Fragment
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void setupUi() {
         initListener();
     }
 
