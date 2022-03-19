@@ -3,6 +3,7 @@ package com.example.encard.data.local.model.category.module;
 import androidx.annotation.NonNull;
 
 import com.example.encard.data.local.common.module.AppModule;
+import com.example.encard.data.local.model.category.temp.CategoryTemp;
 import com.example.encard.data.local.room.AppDataBase;
 import com.example.encard.data.local.model.category.dao.CategoryDao;
 import com.example.encard.domain.model.category.repo.CategoryStorage;
@@ -22,7 +23,12 @@ public class CategoryModule {
     }
 
     @Provides
-    public CategoryStorage categoryStorage(CategoryDao categoryDao) {
-        return new CategoryStorage(categoryDao);
+    public CategoryStorage categoryStorage(CategoryTemp categoryTemp) {
+        return new CategoryStorage(categoryTemp);
+    }
+
+    @Provides
+    public CategoryTemp categoryTemp(CategoryDao categoryDao) {
+        return new CategoryTemp(categoryDao);
     }
 }

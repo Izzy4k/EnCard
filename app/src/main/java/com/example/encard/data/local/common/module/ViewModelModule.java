@@ -45,7 +45,7 @@ public class ViewModelModule {
     }
 
     @Provides
-    public CategoryViewModel categoryViewModel(CategoryStorage categoryStorage) {
-        return new CategoryViewModel(categoryStorage);
+    public CategoryViewModel categoryViewModel(CategoryStorage categoryStorage,WordStorage wordStorage) {
+        return new CategoryViewModel(categoryStorage,wordStorage);
     }
 }

@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.encard.domain.model.category.entity.Category;
 import com.example.encard.domain.model.category.repo.CategoryStorage;
+import com.example.encard.domain.model.word.entity.WordEntity;
+import com.example.encard.domain.model.word.repo.WordStorage;
 
 import java.util.List;
 
@@ -15,9 +17,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class CategoryViewModel extends ViewModel {
     public CategoryStorage categoryStorage;
+    public WordStorage wordStorage;
 
     @Inject
-    public CategoryViewModel(CategoryStorage categoryStorage) {
+    public CategoryViewModel(CategoryStorage categoryStorage, WordStorage wordStorage) {
+        this.wordStorage = wordStorage;
         this.categoryStorage = categoryStorage;
     }
 
@@ -25,7 +29,14 @@ public class CategoryViewModel extends ViewModel {
         categoryStorage.createCategory(word);
     }
 
+    public void deleteCategory(Category category) {
+        categoryStorage.deleteCategory(category);
+        wordStorage.deleteWords(wordStorage.getWordsToTag(category.getCategory()));
+    }
+
     public LiveData<List<Category>> getList() {
         return categoryStorage.getCategory();
     }
+
+
 }

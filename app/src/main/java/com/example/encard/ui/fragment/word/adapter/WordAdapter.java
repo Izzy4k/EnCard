@@ -28,6 +28,10 @@ public class WordAdapter extends RecyclerView.Adapter<WordAdapter.WordViewHolder
         notifyDataSetChanged();
     }
 
+    public List<WordEntity> getList() {
+        return list;
+    }
+
     @NonNull
     @Override
     public WordViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

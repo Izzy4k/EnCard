@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.example.encard.data.local.common.module.AppModule;
 import com.example.encard.data.local.model.word.dao.WordDao;
+import com.example.encard.data.local.model.word.temp.WordTemp;
 import com.example.encard.data.local.room.AppDataBase;
 import com.example.encard.domain.model.word.repo.WordStorage;
 
@@ -21,7 +22,12 @@ public class WordModule {
     }
 
     @Provides
-    public WordStorage wordStorage(WordDao wordDao) {
-        return new WordStorage(wordDao);
+    public WordStorage wordStorage(WordTemp wordTemp) {
+        return new WordStorage(wordTemp);
+    }
+
+    @Provides
+    public WordTemp wordTemp(WordDao wordDao) {
+        return new WordTemp(wordDao);
     }
 }

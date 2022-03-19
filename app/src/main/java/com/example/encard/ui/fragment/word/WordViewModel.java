@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.encard.domain.model.Image.repo.ImageStorage;
 import com.example.encard.domain.model.Image.entity.PixaBayResponse;
-import com.example.encard.domain.model.translate.entity.Translate;
-import com.example.encard.domain.model.translate.repo.TranslateStorage;
 import com.example.encard.domain.model.word.entity.WordEntity;
 import com.example.encard.domain.model.word.repo.WordStorage;
 
@@ -35,9 +33,9 @@ public class WordViewModel extends ViewModel {
             @Override
             public void onSuccess(PixaBayResponse pixaBayResponse) {
                 if (!pixaBayResponse.getHits().isEmpty())
-                    wordStorage.create(new WordEntity(word, category, pixaBayResponse
+                    wordStorage.create(word, category, pixaBayResponse
                             .getHits()
-                            .get(0).getLargeImageURL()));
+                            .get(0).getLargeImageURL());
                 else error.nullPointer();
             }
 
@@ -46,6 +44,10 @@ public class WordViewModel extends ViewModel {
                 errorMessage.setValue(throwable.getMessage());
             }
         });
+    }
+
+    public void delete(WordEntity wordEntity) {
+        wordStorage.deleteWord(wordEntity);
     }
 
     public LiveData<List<WordEntity>> getWords(String category) {
